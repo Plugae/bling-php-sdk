@@ -6,46 +6,46 @@ use Spatie\ArrayToXml\ArrayToXml;
 
 class ProductRepository extends BaseRepository
 {
-    public function all(array $filters = [], bool $estoque = false, string $loja = null, bool $imagem = false): ?array
+    public function all(array $filters = [], bool $estoque = false, string $loja = null, bool $imagem = false, $page = 1): ?array
     {
         $options = [];
 
-        if($estoque) {
+        if ($estoque) {
             $options['estoque'] = 'S';
         }
 
-        if($loja) {
+        if ($loja) {
             $options['loja'] = $loja;
         }
 
-        if($imagem) {
+        if ($imagem) {
             $options['imagem'] = 'S';
         }
 
         foreach ($filters as $k => $v) {
-            $filters[$k] = $k.'['.$v.']';
+            $filters[$k] = $k . '[' . $v . ']';
         }
 
-        if(count($filters)) {
+        if (count($filters)) {
             $options['filters'] = implode('; ', $filters);
         }
 
-        return $this->client->get('produtos/json/', $options);
+        return $this->client->get('produtos/page=' . $page . '/json/', $options);
     }
 
     public function find(string $codigo, bool $estoque = false, string $loja = null, bool $imagem = false): ?array
     {
         $options = [];
 
-        if($estoque) {
+        if ($estoque) {
             $options['estoque'] = 'S';
         }
 
-        if($loja) {
+        if ($loja) {
             $options['loja'] = $loja;
         }
 
-        if($imagem) {
+        if ($imagem) {
             $options['imagem'] = 'S';
         }
 
@@ -56,15 +56,15 @@ class ProductRepository extends BaseRepository
     {
         $options = [];
 
-        if($estoque) {
+        if ($estoque) {
             $options['estoque'] = 'S';
         }
 
-        if($loja) {
+        if ($loja) {
             $options['loja'] = $loja;
         }
 
-        if($imagem) {
+        if ($imagem) {
             $options['imagem'] = 'S';
         }
 

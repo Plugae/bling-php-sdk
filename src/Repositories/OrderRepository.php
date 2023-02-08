@@ -6,30 +6,30 @@ use Spatie\ArrayToXml\ArrayToXml;
 
 class OrderRepository extends BaseRepository
 {
-    public function all(array $filters = [], bool $historico = false): ?array
+    public function all(array $filters = [], bool $historico = false, $page = 1): ?array
     {
         $options = [];
 
-        if($historico) {
+        if ($historico) {
             $options['historico'] = 'true';
         }
 
         foreach ($filters as $k => $v) {
-            $filters[$k] = $k.'['.$v.']';
+            $filters[$k] = $k . '[' . $v . ']';
         }
 
-        if(count($filters)) {
+        if (count($filters)) {
             $options['filters'] = implode('; ', $filters);
         }
 
-        return $this->client->get('pedidos/json/', $options);
+        return $this->client->get('pedidos/page=' . $page . '/json/', $options);
     }
 
     public function find(int $numero, bool $historico = false): ?array
     {
         $options = [];
 
-        if($historico) {
+        if ($historico) {
             $options['historico'] = 'true';
         }
 
@@ -46,7 +46,7 @@ class OrderRepository extends BaseRepository
 
         $options['xml'] = $xml;
 
-        if($gerarnfe) {
+        if ($gerarnfe) {
             $options['gerarnfe'] = 'true';
         }
 
