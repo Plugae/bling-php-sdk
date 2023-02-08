@@ -1,12 +1,12 @@
 {
-	"name": "rits-tecnologia/bling-php-sdk",
+	"name": "plugae/bling-php-sdk",
 	"description": "Bling PHP SDK",
 	"keywords": ["bling", "api", "sdk"],
 	"license": "MIT",
 	"authors": [
 		{
-			"name": "Juciano Araujo",
-			"email": "jucianoaraujo@rits.com.br"
+			"name": "Fabio Aguiar",
+			"email": "aguiar.fabio@gmail.com"
 		}
 	],
 	"autoload": {
